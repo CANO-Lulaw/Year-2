@@ -1,1 +1,1 @@
-print("",permutations)
+x = new_list.copy()

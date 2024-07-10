@@ -1,32 +1,37 @@
-def permute(num):
+def permute(num_list):
     permutations = []
+    new_list = num_list[::-1]
+    a = 1
+    for i in range(1,len(num_list)+1):
+        a *= i
+    b = a/len(num_list)
+    c = int(b)
+    for i in range(c):
+        for j in range(1,len(new_list)+1):
+            permutations.append(new_list.copy())
+            if  new_list[-1] != 3:
+                if j >= len(new_list):
+                    break
+                temp = new_list[j-1]
+                new_list[j-1] = new_list[j] 
+                new_list[j] = temp
 
-    def back(current, remaining):
-        if not remaining:
-            permutations.append(current[:])  
-            return
-        
-        for i in range(len(remaining)):
-            new_current = current + [remaining[i]]
-            new_remaining = remaining[:i] + remaining[i + 1:]
-            back(new_current, new_remaining)
+        new_list.insert(0,new_list.pop())
 
-    back([], num)
-    permutations.sort(reverse=True)  
-    return permutations
+        if i + 2 >= len(new_list):
+            new_list.insert(1,new_list.pop())
+        else:
+            temp = new_list[i+1]
+            new_list[i+1] = new_list[i+2] 
+            new_list[i+2] = temp
+
+    return  permutations
 
 print("*** Fun with permute ***")
 list_in = list(int(i) for  i in input("input : ").split(","))
+
 print("Original Cofllection: ", list_in)
 print("Collection of distinct numbers:")
-permutations = permute(list_in)
-# a = permutations[1]
-# b = permutations[3]
-# c = permutations[2]
-# permutations[1] = b
-# permutations[3] = a
-# permutations[1] = permutations[2]
-# permutations[2] = b
-print("",permutations)
-   
 
+permutations = permute(list_in)
+print("",permutations)
