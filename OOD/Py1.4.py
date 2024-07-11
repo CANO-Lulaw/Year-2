@@ -1,40 +1,35 @@
 def num_grid(lst):
-    n = 0
-    t = 0
-    num_t = 0
-    for i in lst:
-        n = 0
-        for a in i:
-            #แนวนอนทางขวา
-            if n != 4 and i[n+1] == '#':
-                num_t += 1
-            #แนวนอนทางซ้าย
-            if n != 0 and i[n-1] == '#' :
-                num_t+=1
-            #แนวบน
-            if t !=0 and lst[t-1][n] == '#' :
-                num_t+=1
-            #แนวล่าง
-            if t !=4 and lst[t+1][n] == '#' :
-                num_t+=1
-            #แนวทแยงบนซ้าย
-            if t !=0 and n != 0 and lst[t-1][n-1] == '#' :
-                num_t+=1
-            #แนวทแยงบนขวา
-            if t !=0 and n != 4 and lst[t-1][n+1] == '#' :
-                num_t+=1
-            #แนวทแยงล่างซ้าย
-            if t != 4  and n != 0 and lst[t+1][n-1] == '#' :
-                num_t+=1
-            #แนวทแยงล่างขวา
-            if t != 4  and n != 4 and lst[t+1][n+1] == '#' :
-                num_t+=1
-            if a != '#' :
-                lst[t][n] = str(num_t) 
-            n+=1
-            num_t =0
-            
-        t+=1  
+    num = 0
+    toom = 1
+    x=0
+    for i in range(5):
+        for j in range(5):
+            if lst[i][j] == '#':
+                lst[i][j-1] = str(toom)
+                lst[i][j+1] = str(toom)
+
+                # lst[i-1][j-1] = str(toom)
+                # lst[i+1][j+1] = str(toom)
+
+                # lst[i-1][j+1] = str(toom)
+                # lst[i+1][j-1] = str(toom)
+            if lst[j][i] == '#':
+                lst[j+1][i] = str(toom)
+                lst[j-1][i] = str(toom)
+
+            if lst[i][i] == '#':
+                
+
+            if lst[j][i] == '-':
+                lst[j][i] = str(num)
+
+    
+    
+
+                
+
+
+
     return lst
 
 
@@ -54,11 +49,11 @@ def num_grid(lst):
 ]'''
 
 lst_input = []
+
 print("*** Minesweeper ***")
 input_list = input("Enter input(5x5) : ").split(",")
 
 for e in input_list:
-
   lst_input.append([i for i in e.split()])
 
 print("\n",*lst_input,sep = "\n")
