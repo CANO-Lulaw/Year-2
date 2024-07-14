@@ -1,1 +1,1 @@
-x = new_list.copy()
+i
