@@ -5,12 +5,14 @@ class Node():
 
 
 class LinkedList():
-    count = 0
 
     def __init__(self):
         self.head: Node = None
+        self.count = 0
 
     def __str__(self):
+        if self.isEmpty():
+            return "Empty"
         if self.head is None:
             return ""
         result = str(self.head.data)
@@ -23,6 +25,7 @@ class LinkedList():
     def append(self, data):
         if self.head is None:
             self.head = Node(data)
+            self.count += 1
             return
 
         current = self.head
@@ -30,39 +33,61 @@ class LinkedList():
             current = current.next
 
         current.next = Node(data)
-        LinkedList.count += 1
+        self.count += 1
 
     def check_index(self, index1, index2):
-        if index1 > LinkedList.count:
-            print("Error! {index not in length}: ", index1)
+        if index1 > self.count-1:
+            print("Error! {index not in length}:",index1)
             return False
-        if index2 > LinkedList.count:
+        if index2 > self.count-1:
             self.append(index2)
-            print("index not in length, append : ", index2)
+            print("index not in length, append :",index2)
             return False
         return True
 
     def set_index(self, index1, index2):
-        current = self.head
+        if self.isEmpty():
+            return 
         if index1 == 0:
-            self.head.next = Node(index2)
-            print(f"Set node.next complete!, index:value = {index1}:{self.head.data} -> {index2}:{self.head.next.data} ")
+            if index2 == 0:  
+                self.head.next = self.head
+                print(f"Set node.next complete!, index:value = {index1}:{self.head.data} -> {index2}:{self.head.next.data} ")
+                return
 
+            current = self.head
+            for j in range(index2):
+                current = current.next
+
+            temp_index2 = current
+            self.head.next = temp_index2
+            print(f"Set node.next complete!, index:value = {index1}:{self.head.data} -> {index2}:{temp_index2.data} ")
+            return
+
+        current = self.head
         for i in range(index1):
             current = current.next
 
         temp_index1 = current
 
-        for i in range(index2):
+        if index2 == 0:  
+            temp_index1.next = self.head
+            print(f"Set node.next complete!, index:value = {index1}:{temp_index1.data} -> {index2}:{self.head.data}")
+            return
+
+        current = self.head
+        for j in range(index2):
             current = current.next
 
         temp_index1.next = current
         print(f"Set node.next complete!, index:value = {index1}:{temp_index1.data} -> {index2}:{current.data}")
 
     def check_loop(self, index1, index2):
-        if index1 >= index2:
+        if index1 >= index2 and not self.isEmpty():
             return True
         return False
+    
+    def isEmpty(self):
+        return self.count == 0
 
 
 L = LinkedList()
@@ -75,16 +100,24 @@ for i in inp:
 
     elif i[0] == 'S':
         index1, index2 = i[1].split(':')
-        index = L.check_index(int(index1), int(index2))
-        loop = L.check_loop(int(index1), int(index2))
+        index1 = int(index1)
+        index2 = int(index2)
+
+        if L.isEmpty():
+            print("Error! {list is empty}")
+            index = False
+
+        elif not L.isEmpty():
+            index = L.check_index(index1, index2)
+
+        loop = L.check_loop(index1, index2)
 
         if index:
-            L.set_index(int(index1), int(index2))
+            L.set_index(index1,index2)
 
-        if loop:
-            print(L)
-            print("Found Loop")
+if loop and index:
+    print("Found Loop")
             
-        elif not loop:
-            print("No Loop")
-            print(L)
+else:
+    print("No Loop")
+    print(L)
