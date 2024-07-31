@@ -1,1 +1,1 @@
-death
+isEmpty

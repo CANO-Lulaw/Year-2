@@ -1,16 +1,21 @@
 
 def find(prefix, remaining):
-    results = []
+    
+    results = set()
     def combinations(prefix, remaining):
         if prefix:
-            if prefix in '000' :
-                prefix = 0
-            results.append(int(prefix))
+            results.add(int(prefix))
         for i in range(len(remaining)):
-            combinations(prefix + remaining[i], remaining[:i] + remaining[i+1:])
+            combinations(str(prefix) + remaining[i], remaining[:i] + remaining[i+1:])
 
         return sorted(results)
+    
     combinations("", remaining)
+
+    if len(results) == 0:
+        print("Invalid input")
+        return False
+
     return sorted(results)
         
 
@@ -18,10 +23,15 @@ inp = input("Enter digits : ").split()
 check = 0
 
 for i in range(len(inp)):
-    if inp[i].isalpha():
+    if inp[i].isalpha() or len(inp) == 1:
         print("Invalid input")
         check = 1
         break
 
 if check == 0:
-    print("Output :",find("",inp))
+    output = find("",inp)
+    if output == False:
+        pass
+    else:print("Output :",find("",inp))
+
+    
