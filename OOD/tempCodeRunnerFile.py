@@ -1,1 +1,2 @@
-isEmpty
+
+            self.inorder(node.right, stop)
