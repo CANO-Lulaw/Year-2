@@ -55,7 +55,7 @@ class BST:
             self.preorder(node.left, stop)
             self.preorder(node.right, stop)
 
-    def inorder(self, node,stop):
+    def inorder(self, node ,stop):
         if node != None:
             self.inorder(node.left, stop)
             if node.data <= stop:
