@@ -10,24 +10,21 @@ class Node:
 class BST:
     def __init__(self):
         self.root = None
-
+    
     def insert(self, data):
-        if self.root is None :
-            self.root = Node(data)
-        else :
-            current = self.root
-            while current is not None: 
-                if data < current.data:
-                    if current.left is None:
-                        current.left = Node(data)
-                        current = current.left
-                    current = current.left
-                elif data > current.data:
-                    if current.right is None:
-                        current.right = Node(data)
-                        current = current.right
-                    current = current.right
+        self.root = self._insert(self.root, int(data))
         return self.root
+
+    def _insert(self, root, data):
+        if root is None:
+            return Node(data)
+
+        if data < root.data:
+            root.left = self._insert(root.left, data)
+        else:
+            root.right = self._insert(root.right, data)
+
+        return root
 
     def printTree(self, node, level = 0):
         if node != None:

@@ -69,32 +69,111 @@ class AVLTree:
         head.setHeight()
         return head
 
-    def postOrder(self):
-        print("AVLTree post-order : ", end='')
-        self._postOrder(self.root)
-        print()
-
-    def _postOrder(self, root):
-        if root is not None:
-            self._postOrder(root.left)
-            self._postOrder(root.right)
-            print(root.data, end=' ')
-
-    def _printTree(self, node, level=0):
-        if node is not None:
-            self._printTree(node.right, level + 1)
-            print('     ' * level, node.data)
-            self._printTree(node.left, level + 1)
-
+    def height_of_tree(node: AVLNode):
+        if node is None:
+            return 0
+        return 1 + max(AVLTree.height_of_tree(node.left), AVLTree.height_of_tree(node.right))
+    def print_space(self, n, removed):
+        for _ in range(n):
+            print("  ", end="")
+        if removed is None:
+            print("  ", end="")
+        else:
+            print(removed.data, end=" ")
     def printTree(self):
-        self._printTree(self.root)
+        tree_level = []
+        temp = []
+        tree_level.append(self.root)
+        counter = 0
+        height = AVLTree.height_of_tree(self.root) - 1
+        number_of_elements = 2 ** (height + 1) - 1
+        while counter <= height:
+            removed = tree_level.pop(0)
+            if len(temp) == 0:
+                self.print_space(int(number_of_elements / (2 ** (counter + 1))), removed)
+            else:
+                self.print_space(int(number_of_elements / (2 ** counter)), removed)
+            if removed is None:
+                temp.append(None)
+                temp.append(None)
+            else:
+                temp.append(removed.left)
+                temp.append(removed.right)
+            if len(tree_level) == 0:
+                print("\n",end='')
+                tree_level = temp
+                temp = []
+                counter += 1
+
+def burnTreeUtil(node, target, q):
+    if node is None:
+        return 0
+    if node.data == target:
+        print(node.data)
+        if node.left is not None:
+            q.append(node.left)
+        if node.right is not None:
+            q.append(node.right)
+        return 1
+    a = burnTreeUtil(node.left, target, q)
+    if a == 1:
+        q_size = len(q)
+        while q_size:
+            temp = q[0]
+            print(temp.data, end=' ')
+            q.pop(0)
+            if temp.left is not None:
+                q.append(temp.left)
+            if temp.right is not None:
+                q.append(temp.right)
+            q_size -= 1
+        if node.right is not None:
+            q.append(node.right)
+        print(node.data)
+        return 1
+    b = burnTreeUtil(node.right, target, q)
+    if b == 1:
+        q_size = len(q)
+        while q_size:
+            temp = q[0]
+            print(temp.data, end=' ')
+            q.pop(0)
+            if temp.left is not None:
+                q.append(temp.left)
+            if temp.right is not None:
+                q.append(temp.right)
+            q_size -= 1
+        if node.left is not None:
+            q.append(node.left)
+        print(node.data)
+        return 1
+def burnTree(root, target):
+    q = []
+    burnTreeUtil(root, target, q)
+    while q:
+        q_size = len(q)
+        while q_size:
+            temp = q[0]
+            print(temp.data, end='')
+            if temp.left is not None:
+                q.append(temp.left)
+            if temp.right is not None:
+                q.append(temp.right)
+            if len(q) != 1:
+                print(' ',end = '')
+            q.pop(0)
+            q_size -= 1
         print()
 
 
 avl1 = AVLTree()
 
-inp = list(i.split(" ") for i in input('Enter node and burn node :  ').split('/'))
+data, target = input("Enter node and burn node : ").split('/')
 
-for e in inp[0] :
+for e in data.split(" "):
     avl1.add(e)
 avl1.printTree()
+
+if target not in data:
+    print(f"There is no {target} in the tree.")
+burnTree(avl1.root, int(target))

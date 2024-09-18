@@ -45,8 +45,8 @@ class AVLTree:
             return self.rotateRightChild(root) 
 
         if root.balanceValue() > 1: #หนักขวา
-            if root.right.balanceValue() < 0:
-                root.right = self.rotateRightChild(root.right) #ซ้าย
+            if root.right.balanceValue() < 0:#ซ้าย
+                root.right = self.rotateRightChild(root.right) 
             return self.rotateLeftChild(root) 
 
         return root
