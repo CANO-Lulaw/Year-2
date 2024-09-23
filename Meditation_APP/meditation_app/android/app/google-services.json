@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "535404401486",
+    "project_id": "maditation-app-41580",
+    "storage_bucket": "maditation-app-41580.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535404401486:android:9a0e83a08c545ae5eb841f",
+        "android_client_info": {
+          "package_name": "com.example.meditation_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLSC_aBiFYojlknpxpQireqhwUgivkoHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
