@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:meditation_app/common/color_extension.dart';
-import 'package:meditation_app/common_widget/round_button.dart';
-import 'package:meditation_app/screen/login/login_screen.dart';
-import 'package:meditation_app/screen/login/sign_up_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -1,10 +1,11 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/common_widget/round_button.dart';
 import 'package:meditation_app/common_widget/round_text_field.dart';
 import 'package:meditation_app/screen/login/sign_up_screen.dart';
-// import 'package:meditation_app/services/auth_service.dart';
+import 'package:meditation_app/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,9 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // final TextEditingController usernameController = TextEditingController();
-  // final TextEditingController emailController = TextEditingController();
-  // final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -24,13 +24,12 @@ class _LoginScreenState extends State<LoginScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
   }
 
-  // @override
-  // void dispose() {
-  //   usernameController.dispose();
-  //   emailController.dispose();
-  //   passwordController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,19 +113,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 RoundTextField(
                   hintText: "Email address",
-                  // controller: emailController,
+                  controller: emailController,
                 ),
                 const SizedBox(height: 20),
                 RoundTextField(
                   hintText: "Password",
-                  // controller: passwordController,
+                  controller: passwordController,
                   obscureText: true,
                 ),
                 const SizedBox(height: 20),
                 RoundButton(
                     title: "Log in",
-                    onPressed: ()  {
-                     
+                    onPressed: () async {
+                      await AuthService().signin(
+                        email: emailController.text,
+                        password: passwordController.text,
+                        context: context,
+                      );
                     }),
                 const SizedBox(height: 120),
                 Row(

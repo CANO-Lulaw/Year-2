@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meditation_app/common_widget/round_button.dart';
@@ -135,6 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               RoundButton(
                   title: "Get start",
                   onPressed: () async {
+                    log('test $passwordController');
                     await AuthService().signup(
                       username: usernameController.text,
                       email: emailController.text,
