@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:meditation_app/common_widget/round_button.dart';
 import 'package:meditation_app/common_widget/round_text_field.dart';
 import 'package:meditation_app/screen/login/startup_screen.dart';
+import 'package:meditation_app/services/auth_service.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -12,10 +13,22 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -103,16 +116,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               const SizedBox(height: 20),
-              const RoundTextField(hintText: "Username"),
+              RoundTextField(
+                hintText: "Username",
+                controller: usernameController,
+              ),
               const SizedBox(height: 20),
-              const RoundTextField(hintText: "Email address"),
+              RoundTextField(
+                hintText: "Email address",
+                controller: emailController,
+              ),
               const SizedBox(height: 20),
-              const RoundTextField(
+              RoundTextField(
                 hintText: "Password",
                 obscureText: true,
+                controller: passwordController,
               ),
               const SizedBox(height: 30),
-              RoundButton(title: "Get start", onPressed: () {}),
+              RoundButton(
+                  title: "Get start",
+                  onPressed: () async {
+                    await AuthService().signup(
+                      username: usernameController.text,
+                      email: emailController.text,
+                      password: passwordController.text,
+                      context: context,
+                    );
+                  }),
               const SizedBox(height: 60),
             ],
           ),
