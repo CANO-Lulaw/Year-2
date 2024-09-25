@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -83,10 +85,12 @@ class AuthService {
               builder: (BuildContext context) => const HomeScreen()));
     } on FirebaseAuthException catch (e) {
       String message = '';
-      if (e.code == 'user-not-found') {
+      if (e.code == 'invalid-email') {
         message = 'No user found for that email.';
-      } else if (e.code == 'wrong-password') {
+      } else if (e.code == 'invalid-credential') {
         message = 'Wrong password provided for that user.';
+      } else if (e.code == 'too-many-requests') {
+        message = 'Please wait and try again later.';
       } else {
         message = 'An error occurred. Please try again.';
       }
