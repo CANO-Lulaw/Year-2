@@ -5,6 +5,7 @@ import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/common_widget/round_button.dart';
 import 'package:meditation_app/common_widget/round_text_field.dart';
 import 'package:meditation_app/screen/login/sign_up_screen.dart';
+import 'package:meditation_app/screen/main_tabview/main_tabview_screen.dart';
 import 'package:meditation_app/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -130,6 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         password: passwordController.text,
                         context: context,
                       );
+                      context.push(const MainTabViewScreen());
                     }),
                 const SizedBox(height: 120),
                 Row(

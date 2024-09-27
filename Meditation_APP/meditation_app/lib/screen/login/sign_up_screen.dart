@@ -1,9 +1,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/common_widget/round_button.dart';
 import 'package:meditation_app/common_widget/round_text_field.dart';
+import 'package:meditation_app/common_widget/timeoptions.dart';
 import 'package:meditation_app/screen/login/startup_screen.dart';
+import 'package:meditation_app/screen/main_tabview/main_tabview_screen.dart';
 import 'package:meditation_app/services/auth_service.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -143,6 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       password: passwordController.text,
                       context: context,
                     );
+                    context.push(const MainTabViewScreen());
                   }),
               const SizedBox(height: 60),
             ],

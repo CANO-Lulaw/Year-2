@@ -29,4 +29,4 @@ print(inp)
 #                 inp[j], inp[j+1] = inp[j+1], inp[j]
 
 #         if not swapped:
-#             retur
+#             return

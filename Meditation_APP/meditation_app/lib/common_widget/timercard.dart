@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/common/color_extension.dart';
+import 'package:meditation_app/screen/pomodoro/timeservice.dart';
+import 'package:provider/provider.dart';
 
 class TimerCard extends StatelessWidget {
   const TimerCard({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TimeService>(context);
+    final seconds = provider.currentDuration % 60;
+
     return Column(children: [
-      const Text(
-        "Focus",
-        style: TextStyle(
+      Text(
+        provider.currentState,
+        style: const TextStyle(
           color: Color.fromARGB(255, 177, 228, 221),
           fontSize: 70,
           fontWeight: FontWeight.w700,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20,
       ),
       Row(
@@ -32,20 +36,20 @@ class TimerCard extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 4,
                     blurRadius: 4,
-                    offset: Offset(0, 2))
+                    offset: const Offset(0, 2))
               ],
             ),
-            child: const Center(
+            child: Center(
               child: Text(
-                '12',
-                style: TextStyle(
+                (provider.currentDuration ~/ 60).toString(),
+                style: const TextStyle(
                     fontSize: 85,
                     color: Color.fromARGB(255, 14, 81, 66),
                     fontWeight: FontWeight.bold),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           const Text(
@@ -56,7 +60,7 @@ class TimerCard extends StatelessWidget {
                 color: Color.fromARGB(255, 154, 213, 199),
                 fontWeight: FontWeight.bold),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Container(
             width: MediaQuery.of(context).size.width / 3.2,
             height: 170,
@@ -68,13 +72,15 @@ class TimerCard extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 4,
                     blurRadius: 4,
-                    offset: Offset(0, 2))
+                    offset: const Offset(0, 2))
               ],
             ),
-            child: const Center(
+            child: Center(
               child: Text(
-                '00',
-                style: TextStyle(
+                seconds == 0
+                    ? "${seconds.round()}0"
+                    : seconds.round().toString(),
+                style: const TextStyle(
                     fontSize: 85,
                     color: Color.fromARGB(255, 14, 81, 66),
                     fontWeight: FontWeight.bold),

@@ -42,6 +42,7 @@ dependencies:
   rxdart: ^0.28.0
   just_audio: ^0.9.40
   get: ^4.6.6
+  provider:
 
 dev_dependencies:
   flutter_test:
@@ -86,7 +87,7 @@ flutter:
       fonts:
         - asset: assets\font\Rustic Garden.otf
           weight: 600
-    - family : normal
+    - family : u
       fonts:
         - asset : assets\font\Vacation.otf
           weight : 600

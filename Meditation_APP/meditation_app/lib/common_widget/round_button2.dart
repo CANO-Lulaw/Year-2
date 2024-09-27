@@ -3,7 +3,7 @@ import 'package:meditation_app/common/color_extension.dart';
 
 enum RoundButtonType { primary, secondary }
 
-class RoundButton extends StatelessWidget {
+class RoundButton2 extends StatelessWidget {
   final String title;
   final RoundButtonType type;
   final VoidCallback onPressed;
@@ -11,8 +11,10 @@ class RoundButton extends StatelessWidget {
   final double textSize;
   final double? buttonWidth;
   final double? buttonHeight;
+  final Color? textcolor; 
+  final Color? buttoncolor; 
 
-  const RoundButton({
+  const RoundButton2({
     super.key,
     required this.title,
     this.type = RoundButtonType.primary,
@@ -21,19 +23,23 @@ class RoundButton extends StatelessWidget {
     this.textSize = 40,
     this.buttonWidth,
     this.buttonHeight,
+    this.textcolor, 
+    this.buttoncolor, 
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: MaterialButton(
         onPressed: onPressed,
         minWidth: buttonWidth ?? double.maxFinite,
         height: buttonHeight ?? 60,
         elevation: 0,
-        color:
-            type == RoundButtonType.primary ? Tcolor.primary : Tcolor.secondary,
+        color: buttoncolor ??
+            (type == RoundButtonType.primary
+                ? Tcolor.primary
+                : Tcolor.secondary),
         shape: RoundedRectangleBorder(
           side: BorderSide.none,
           borderRadius: BorderRadius.circular(30),
@@ -49,9 +55,10 @@ class RoundButton extends StatelessWidget {
               title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: type == RoundButtonType.primary
-                    ? const Color.fromARGB(255, 216, 231, 226)
-                    : Tcolor.textBG,
+                color: textcolor ??
+                    (type == RoundButtonType.primary
+                        ? const Color.fromARGB(255, 216, 231, 226)
+                        : Tcolor.textBG),
                 fontSize: textSize,
                 fontWeight: FontWeight.w800,
               ),

@@ -8,7 +8,7 @@ class Tcolor {
   static Color get primaryText => const Color.fromARGB(255, 10, 91, 85);
   static Color get primaryTextW => const Color.fromARGB(255, 49, 203, 175);
   static Color get secondaryText => const Color.fromARGB(255, 49, 203, 175);
-  static Color get textBG => Colors.black;
+  static Color get textBG => const Color.fromARGB(255, 156, 213, 206);
 }
 
 extension AppContext on BuildContext {
