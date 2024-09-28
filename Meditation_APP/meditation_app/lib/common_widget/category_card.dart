@@ -44,10 +44,10 @@ class _CategoryCradState extends State<CategoryCrad> {
                 const Color.fromARGB(255, 45, 65, 72).withOpacity(0.3),
             onTap: () {
               setState(() {
-                _buttonColor = const Color.fromARGB(255, 42, 79, 73);
+                _buttonColor = const Color.fromARGB(255, 64, 98, 98);
               });
 
-              Future.delayed(const Duration(milliseconds: 150), () {
+              Future.delayed(const Duration(milliseconds: 100), () {
                 widget.press();
               });
             },

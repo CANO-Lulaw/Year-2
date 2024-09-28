@@ -4,7 +4,9 @@ import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/firebase_options.dart';
 import 'package:meditation_app/screen/home/home_screen.dart';
 import 'package:meditation_app/screen/login/startup_screen.dart';
+import 'package:meditation_app/screen/main_tabview/main_tabview_screen.dart';
 import 'package:meditation_app/screen/music/main_music_screen.dart';
+import 'package:meditation_app/screen/music/music_catedory/music1_screen.dart';
 import 'package:meditation_app/screen/pomodoro/pomodoro_screen.dart';
 import 'package:meditation_app/screen/pomodoro/timeservice.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Tcolor.primary),
         useMaterial3: false,
       ),
-      home: const StartUpScreen(),
+      home: const MainTabViewScreen(),
     );
   }
 }

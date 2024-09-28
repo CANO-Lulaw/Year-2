@@ -11,9 +11,9 @@ class TimerCard extends StatelessWidget {
     final seconds = provider.currentDuration % 60;
 
     return Column(children: [
-      Text(
-        provider.currentState,
-        style: const TextStyle(
+      const Text(
+        "FOCUS",
+        style: TextStyle(
           color: Color.fromARGB(255, 177, 228, 221),
           fontSize: 70,
           fontWeight: FontWeight.w700,

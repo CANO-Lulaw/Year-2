@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/common_widget/progresswidget.dart';
+import 'package:meditation_app/common_widget/round_button2.dart';
 import 'package:meditation_app/common_widget/timecontroller.dart';
 import 'package:meditation_app/common_widget/timeoptions.dart';
 import 'package:meditation_app/common_widget/timercard.dart';
 import 'package:meditation_app/screen/main_tabview/main_tabview_screen.dart';
+import 'package:meditation_app/screen/pomodoro/time_screen.dart';
 import 'package:meditation_app/screen/pomodoro/timeservice.dart';
 import 'package:provider/provider.dart';
 
@@ -17,13 +19,12 @@ class PomodoroScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Tcolor.primaryText,
         leading: IconButton(
           icon: Image.asset(
             "assets/img/back.png",
             width: 40,
             height: 40,
-            color: const Color.fromARGB(255, 15, 43, 40),
+            color: const Color.fromARGB(255, 128, 174, 158),
           ),
           onPressed: () {
             Navigator.pushAndRemoveUntil(
@@ -33,15 +34,6 @@ class PomodoroScreen extends StatelessWidget {
               (Route<dynamic> route) => false,
             );
           },
-        ),
-        title: const Text(
-          "Focus Timer",
-          style: TextStyle(
-            color: Color.fromARGB(255, 156, 213, 206),
-            fontSize: 40,
-            fontFamily: "normalcandy",
-            fontWeight: FontWeight.w700,
-          ),
         ),
         actions: [
           IconButton(
@@ -58,24 +50,37 @@ class PomodoroScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,
-          child: const Column(
+          child: Column(
             children: [
-              SizedBox(
-                height: 15,
+              Image.asset(
+                "assets/img/frog.png",
+                width: 200,
+                height: 200,
               ),
-              TimerCard(),
-              SizedBox(
+              const SizedBox(
+                height: 10,
+              ),
+              const SizedBox(
                 height: 40,
               ),
-              TimeOptions(),
-              SizedBox(
+              const TimeOptions(),
+              const SizedBox(
                 height: 60,
               ),
-              TimeController(),
-              SizedBox(
+              RoundButton2(
+                  title: "START",
+                  textSize: 50,
+                  buttonWidth: 100,
+                  buttonHeight: 100,
+                  textcolor: const Color.fromARGB(255, 21, 53, 41),
+                  buttoncolor: const Color.fromARGB(255, 108, 150, 123),
+                  onPressed: () {
+                    context.push(const TimeScreen());
+                    provider.start();
+                  }),
+              const SizedBox(
                 height: 70,
               ),
-              ProgressWidget(),
             ],
           ),
         ),

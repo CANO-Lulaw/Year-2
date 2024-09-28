@@ -1,3 +1,4 @@
+
 name: meditation_app
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
@@ -39,10 +40,14 @@ dependencies:
   fluttertoast: ^8.2.8
   # cloud_firestore: ^5.4.2
   shared_preferences: ^2.0.13
-  rxdart: ^0.28.0
+  rxdart: ^0.27.7
+  # assets_audio_player: ^3.1.1
+  percent_indicator: ^4.2.3
   just_audio: ^0.9.40
   get: ^4.6.6
   provider:
+  # audioplayers: ^5.1.0
+
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +74,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/img/
+    - assets/music/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
