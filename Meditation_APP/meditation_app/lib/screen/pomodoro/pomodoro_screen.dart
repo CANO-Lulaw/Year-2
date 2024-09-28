@@ -23,7 +23,7 @@ class PomodoroScreen extends StatelessWidget {
             "assets/img/back.png",
             width: 40,
             height: 40,
-            color: const Color.fromARGB(255, 154, 212, 208),
+            color: const Color.fromARGB(255, 15, 43, 40),
           ),
           onPressed: () {
             Navigator.pushAndRemoveUntil(

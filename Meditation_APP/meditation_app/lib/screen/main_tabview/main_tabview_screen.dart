@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/common_widget/tab_button.dart';
 import 'package:meditation_app/screen/home/home_screen.dart';
+import 'package:meditation_app/screen/music/main_music_screen.dart';
 import 'package:meditation_app/screen/pomodoro/pomodoro_screen.dart';
 
 class MainTabViewScreen extends StatefulWidget {
@@ -37,9 +38,7 @@ class _MainTabViewScreenState extends State<MainTabViewScreen>
       body: TabBarView(controller: controller, children: [
         const HomeScreen(),
         const PomodoroScreen(),
-        Container(
-          color: const Color.fromARGB(255, 48, 96, 102),
-        ),
+        const MainMusicScreen(),
         Container(),
         Container(
           color: const Color.fromARGB(255, 55, 85, 71),

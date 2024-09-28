@@ -4,6 +4,7 @@ import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/firebase_options.dart';
 import 'package:meditation_app/screen/home/home_screen.dart';
 import 'package:meditation_app/screen/login/startup_screen.dart';
+import 'package:meditation_app/screen/music/main_music_screen.dart';
 import 'package:meditation_app/screen/pomodoro/pomodoro_screen.dart';
 import 'package:meditation_app/screen/pomodoro/timeservice.dart';
 import 'package:provider/provider.dart';
