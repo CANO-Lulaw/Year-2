@@ -30,6 +30,22 @@ class _StartUpScreenState extends State<StartUpScreen> {
             height: MediaQuery.of(context).size.height,
             fit: BoxFit.cover,
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/img/logo1.png",
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              )
+            ],
+          ),
           const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -50,7 +66,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "The journey of a thousand miles begins with one step",
+                        "The journey of a thousand miles begins with one step.",
                         style: TextStyle(
                           color: Color.fromRGBO(171, 228, 219, 1),
                           fontSize: 25,

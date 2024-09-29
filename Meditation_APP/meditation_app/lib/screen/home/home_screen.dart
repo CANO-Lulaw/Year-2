@@ -3,7 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/common_widget/round_button.dart';
 import 'package:meditation_app/common_widget/round_button2.dart';
+import 'package:meditation_app/screen/music/main_music_screen.dart';
+import 'package:meditation_app/screen/music/music_catedory/music1_screen.dart';
 import 'package:meditation_app/screen/pomodoro/pomodoro_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,26 +18,46 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List rArr = [
     {
-      "image": "assets/img/focus.png",
-      "title": "Focus",
-      "subtitle": "Focus and relax",
+      "image": "assets/img/pic1.jpg",
+      "title": "Smiling cat",
+      "subtitle": "A little cat is sleeping on the grass.",
     },
     {
-      "image": "assets/img/frog.png",
-      "title": "frog",
-      "subtitle": "Focus and relax",
+      "image": "assets/img/pic2.jpg",
+      "title": "Lazy frog",
+      "subtitle": "The frog is thinking about tonight.",
     },
     {
-      "image": "assets/img/forestw.png",
-      "title": "forestw",
-      "subtitle": "Focus and relax",
+      "image": "assets/img/pic4.jpg",
+      "title": "Two foxes",
+      "subtitle": "A fox couple sleeping together.",
     },
     {
-      "image": "assets/img/tapfoerst.jpg",
-      "title": "tapforest",
-      "subtitle": "Focus and relax",
+      "image": "assets/img/pic0.jpg",
+      "title": "Multicolored cat",
+      "subtitle": "Cats take a nap.",
+    },
+    {
+      "image": "assets/img/pic5.jpg",
+      "title": "Tiny squirrel",
+      "subtitle": "Little one smells the flowers.",
     },
   ];
+
+  String username = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUsername();
+  }
+
+  Future<void> _loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = prefs.getString('username') ?? '...Focus Forest';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,23 +67,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/img/logo_App.png",
-                  width: context.width * 0.6,
-                )
-              ],
+            const SizedBox(
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Welcome back, !",
-                    style: TextStyle(
+                  Text(
+                    "Welcome to , $username!",
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 185, 227, 219),
                       fontSize: 55,
                       fontWeight: FontWeight.w700,
@@ -75,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   Row(
                     children: [
@@ -110,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       "Relax Music",
                                       style: TextStyle(
                                         color:
-                                            Color.fromARGB(255, 89, 158, 147),
+                                            Color.fromARGB(255, 171, 226, 217),
                                         fontSize: 35,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -119,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       "start to relax",
                                       style: TextStyle(
                                         color:
-                                            Color.fromARGB(255, 89, 158, 147),
+                                            Color.fromARGB(255, 172, 202, 197),
                                         fontSize: 30,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -137,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           "3-10 Min",
                                           style: TextStyle(
                                             color: Color.fromARGB(
-                                                255, 89, 158, 147),
+                                                255, 145, 172, 168),
                                             fontSize: 30,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -152,8 +169,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             buttoncolor: const Color.fromARGB(
                                                 255, 166, 215, 203),
                                             onPressed: () {
-                                              context
-                                                  .push(const PomodoroScreen());
+                                              context.push(
+                                                  const MainMusicScreen());
                                             })
                                       ],
                                     ),
@@ -200,7 +217,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Text(
                                       "Focus time",
                                       style: TextStyle(
-                                        color: Tcolor.textBG,
+                                        color: const Color.fromARGB(
+                                            255, 32, 79, 70),
                                         fontSize: 35,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -208,7 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Text(
                                       "start to focus",
                                       style: TextStyle(
-                                        color: Tcolor.textBG,
+                                        color: const Color.fromARGB(
+                                            255, 32, 79, 70),
                                         fontSize: 30,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -223,9 +242,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "5-60Min",
+                                          "5-60 Min",
                                           style: TextStyle(
-                                            color: Tcolor.textBG,
+                                            color: const Color.fromARGB(
+                                                255, 32, 79, 70),
                                             fontSize: 30,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -300,9 +320,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       height: 3,
                                     ),
                                     Text(
-                                      "in 3 min",
+                                      "in 6 min",
                                       style: TextStyle(
-                                        color: Tcolor.textBG,
+                                        color: const Color.fromARGB(
+                                            255, 157, 254, 236),
                                         fontSize: 30,
                                         fontWeight: FontWeight.w700,
                                       ),
@@ -324,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   buttoncolor:
                                       const Color.fromARGB(255, 207, 240, 233),
                                   onPressed: () {
-                                    context.push(const PomodoroScreen());
+                                    context.push(const Music1Screen());
                                   }),
                             ],
                           ),
@@ -336,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 10,
                   ),
                   const Text(
-                    "Spin the Wheel",
+                    "Animals help you relax",
                     style: TextStyle(
                       color: Color.fromARGB(255, 185, 227, 219),
                       fontSize: 55,
@@ -361,11 +382,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Image.asset(
                           r0bj["image"],
-                          width: context.width * 0.35,
-                          height: context.width * 0.35 * 0.7,
+                          width: context.width * 0.30,
+                          height: context.width * 0.4 * 0.6,
                         ),
                         const SizedBox(
-                          height: 8,
+                          height: 10,
                         ),
                         Text(
                           r0bj["title"],
@@ -382,7 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           r0bj["subtitle"],
                           style: const TextStyle(
                             color: Color.fromARGB(255, 185, 227, 219),
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                           ),
                         ),

@@ -1,6 +1,8 @@
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/common_widget/round_button.dart';
 import 'package:meditation_app/common_widget/round_text_field.dart';
@@ -77,11 +79,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Create your account",
+                        "Welcome To Focus Forest",
                         style: TextStyle(
                           color: Color.fromRGBO(171, 228, 219, 1),
                           fontSize: 60,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       SizedBox(height: 5),
@@ -95,25 +97,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(height: 200),
-              RoundButton(
-                icon: Image.asset(
-                  "assets/img/google.png",
-                  width: 40,
-                  height: 40,
-                ),
-                title: "continue with google",
-                textSize: 30,
-                onPressed: () {},
-              ),
-              const SizedBox(height: 20),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "or Create with email",
+                    "Create with email",
                     style: TextStyle(
                       color: Color.fromRGBO(171, 228, 219, 1),
-                      fontSize: 25,
+                      fontSize: 45,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -137,24 +128,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const SizedBox(height: 30),
               RoundButton(
-                  title: "Get start",
-                  onPressed: () async {
-                    log('test $passwordController');
-                    await AuthService().signup(
-                      username: usernameController.text,
-                      email: emailController.text,
-                      password: passwordController.text,
-                      context: context,
+                title: "Get start",
+                onPressed: () async {
+                  await AuthService().signup(
+                    username: usernameController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                    context: context,
+                  );
+                  User? user = FirebaseAuth.instance.currentUser;
+                  if (user != null) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MainTabViewScreen()),
                     );
-                    context.push(const MainTabViewScreen());
-                  }),
+                  } else {
+                    Fluttertoast.showToast(
+                      msg: "Login failed. Please check your credentials.",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.SNACKBAR,
+                      backgroundColor: const Color.fromARGB(137, 21, 91, 77),
+                      textColor: const Color.fromARGB(255, 171, 240, 230),
+                      fontSize: 14.0,
+                    );
+                  }
+                },
+              ),
               const SizedBox(height: 60),
             ],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 525),
+              const SizedBox(height: 465),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

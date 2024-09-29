@@ -72,13 +72,13 @@ class MainMusicScreen extends StatelessWidget {
                       color: Color.fromARGB(255, 29, 88, 92),
                     )),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
-                const Text("relax melody to help you",
+                const Text("Relaxing melodies\nthat will help you",
                     style: TextStyle(
                       fontSize: 40,
-                      fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 125, 176, 156),
+                      fontWeight: FontWeight.w300,
+                      color: Color.fromARGB(255, 172, 216, 200),
                     )),
                 const SizedBox(
                   height: 25,
@@ -97,8 +97,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const Music1Screen()),
+                                builder: (context) => const Music1Screen()),
                           );
                         },
                       ),
@@ -120,7 +119,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music3Screen()),
+                                builder: (context) => const Music3Screen()),
                           );
                         },
                       ),
@@ -131,7 +130,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music4Screen()),
+                                builder: (context) => const Music4Screen()),
                           );
                         },
                       ),
@@ -142,7 +141,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music5Screen()),
+                                builder: (context) => const Music5Screen()),
                           );
                         },
                       ),
@@ -153,7 +152,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music6Screen()),
+                                builder: (context) => const Music6Screen()),
                           );
                         },
                       ),
@@ -164,7 +163,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music7Screen()),
+                                builder: (context) => const Music7Screen()),
                           );
                         },
                       ),
@@ -175,7 +174,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music8Screen()),
+                                builder: (context) => const Music8Screen()),
                           );
                         },
                       ),
@@ -186,7 +185,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music9Screen()),
+                                builder: (context) => const Music9Screen()),
                           );
                         },
                       ),
@@ -197,7 +196,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music10Screen()),
+                                builder: (context) => const Music10Screen()),
                           );
                         },
                       ),
@@ -208,7 +207,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music11Screen()),
+                                builder: (context) => const Music11Screen()),
                           );
                         },
                       ),
@@ -219,7 +218,7 @@ class MainMusicScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  const Music12Screen()),
+                                builder: (context) => const Music12Screen()),
                           );
                         },
                       ),

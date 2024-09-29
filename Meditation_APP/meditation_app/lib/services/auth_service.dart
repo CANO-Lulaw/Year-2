@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meditation_app/screen/home/home_screen.dart';
-// import 'package:meditation_app/screen/login/startup_screen.dart';
+import 'package:meditation_app/screen/login/startup_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
@@ -69,6 +67,9 @@ class AuthService {
         password: password,
       );
 
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.remove('username');
+
       Fluttertoast.showToast(
         msg: "Sign In Successful!",
         toastLength: Toast.LENGTH_SHORT,
@@ -106,10 +107,22 @@ class AuthService {
     } catch (e) {}
   }
 
-  // Future<void> signout({required BuildContext context}) async {
-  //   await FirebaseAuth.instance.signOut();
-  //   await Future.delayed(const Duration(seconds: 1));
-  //   Navigator.pushReplacement(context,
-  //       MaterialPageRoute(builder: (BuildContext context) => StartUpScreen()));
-  // }
+  Future<void> signout({required BuildContext context}) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.remove('username');
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => const StartUpScreen()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Logout failed: ${e.toString()}")),
+      );
+    }
+  }
 }

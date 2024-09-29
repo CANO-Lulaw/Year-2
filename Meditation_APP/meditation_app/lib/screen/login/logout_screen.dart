@@ -1,23 +1,22 @@
 import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meditation_app/common/color_extension.dart';
 import 'package:meditation_app/common_widget/round_button.dart';
 import 'package:meditation_app/common_widget/round_text_field.dart';
 import 'package:meditation_app/screen/login/sign_up_screen.dart';
+import 'package:meditation_app/screen/login/startup_screen.dart';
 import 'package:meditation_app/screen/main_tabview/main_tabview_screen.dart';
 import 'package:meditation_app/services/auth_service.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LogoutScreen extends StatefulWidget {
+  const LogoutScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LogoutScreen> createState() => _LogoutScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LogoutScreenState extends State<LogoutScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -50,7 +49,12 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.all(16.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const MainTabViewScreen()),
+                  );
                 },
                 child: Image.asset(
                   "assets/img/back.png",
@@ -71,11 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Welcome Back!",
+                          "Good Bye!",
                           style: TextStyle(
                             color: Color.fromRGBO(171, 228, 219, 1),
                             fontSize: 80,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                         SizedBox(height: 5),
@@ -88,89 +92,42 @@ class _LoginScreenState extends State<LoginScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(height: 200),
+                const SizedBox(height: 20),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 60,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 150),
+                Image.asset(
+                  "assets/img/exit.png",
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(height: 100),
+                RoundButton(
+                    title: "Log out",
+                    onPressed: () async {
+                      await AuthService().signout(
+                        context: context,
+                      );
+                    }),
                 const SizedBox(height: 20),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Login with email",
-                      style: TextStyle(
-                        color: Color.fromRGBO(171, 228, 219, 1),
-                        fontSize: 45,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                RoundTextField(
-                  hintText: "Email address",
-                  controller: emailController,
-                ),
-                const SizedBox(height: 20),
-                RoundTextField(
-                  hintText: "Password",
-                  controller: passwordController,
-                  obscureText: true,
-                ),
-                const SizedBox(height: 20),
-                RoundButton(
-                  title: "Log in",
-                  onPressed: () async {
-                    await AuthService().signin(
-                      email: emailController.text,
-                      password: passwordController.text,
-                      context: context,
-                    );
-                    User? user = FirebaseAuth.instance.currentUser;
-                    if (user != null) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MainTabViewScreen()),
-                      );
-                    } else {
-                      Fluttertoast.showToast(
-                        msg: "Login failed. Please check your credentials.",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.SNACKBAR,
-                        backgroundColor: const Color.fromARGB(137, 21, 91, 77),
-                        textColor: const Color.fromARGB(255, 171, 240, 230),
-                        fontSize: 14.0,
-                      );
-                    }
-                  },
-                ),
-                const SizedBox(height: 120),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Create a new account?",
+                      "Hope to see you again!",
                       style: TextStyle(
                         color: Color.fromRGBO(171, 228, 219, 1),
                         fontSize: 30,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w300,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUpScreen()),
-                        );
-                      },
-                      child: Text(
-                        "SIGN UP",
-                        style: TextStyle(
-                          color: Tcolor.tertiary,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ],

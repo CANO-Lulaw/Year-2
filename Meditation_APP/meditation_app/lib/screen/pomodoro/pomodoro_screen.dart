@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/common/color_extension.dart';
-import 'package:meditation_app/common_widget/progresswidget.dart';
 import 'package:meditation_app/common_widget/round_button2.dart';
 import 'package:meditation_app/common_widget/timecontroller.dart';
 import 'package:meditation_app/common_widget/timeoptions.dart';
@@ -53,15 +52,31 @@ class PomodoroScreen extends StatelessWidget {
           child: Column(
             children: [
               Image.asset(
-                "assets/img/frog.png",
+                "assets/img/pomodoro.png",
                 width: 200,
                 height: 200,
               ),
-              const SizedBox(
-                height: 10,
+              const Text(
+                "Let's go on a journey",
+                style: TextStyle(
+                  color: Color.fromRGBO(151, 202, 183, 1),
+                  fontSize: 40,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(
-                height: 40,
+                height: 100,
+              ),
+              const Text(
+                "Choose the time you want to focus.",
+                style: TextStyle(
+                  color: Color.fromRGBO(130, 167, 153, 1),
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
               ),
               const TimeOptions(),
               const SizedBox(

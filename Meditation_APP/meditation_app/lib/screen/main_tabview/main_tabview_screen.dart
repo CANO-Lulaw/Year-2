@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app/common_widget/tab_button.dart';
 import 'package:meditation_app/screen/home/home_screen.dart';
+import 'package:meditation_app/screen/home/spin_wheel/spin_wheel_screen.dart';
+import 'package:meditation_app/screen/login/logout_screen.dart';
 import 'package:meditation_app/screen/music/main_music_screen.dart';
 import 'package:meditation_app/screen/pomodoro/pomodoro_screen.dart';
 
@@ -35,14 +37,12 @@ class _MainTabViewScreenState extends State<MainTabViewScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TabBarView(controller: controller, children: [
-        const HomeScreen(),
-        const PomodoroScreen(),
-        const MainMusicScreen(),
-        Container(),
-        Container(
-          color: const Color.fromARGB(255, 55, 85, 71),
-        ),
+      body: TabBarView(controller: controller, children: const [
+        HomeScreen(),
+        PomodoroScreen(),
+        MainMusicScreen(),
+        SpinWheel(),
+        LogoutScreen(),
       ]),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(top: 15, bottom: 8),
@@ -86,7 +86,7 @@ class _MainTabViewScreenState extends State<MainTabViewScreen>
                 }),
             TabButton(
                 icon: "assets/img/account_bar.png",
-                title: "Profile",
+                title: "Logout",
                 isSelect: selectTab == 4,
                 onPressed: () {
                   changeTab(4);

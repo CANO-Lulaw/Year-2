@@ -46,7 +46,9 @@ dependencies:
   just_audio: ^0.9.40
   get: ^4.6.6
   provider:
+  # flutter_gif: ^0.0.4
   # audioplayers: ^5.1.0
+  flutter_fortune_wheel: ^1.3.1
 
 
 dev_dependencies:
